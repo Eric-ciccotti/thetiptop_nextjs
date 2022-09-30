@@ -1,0 +1,54 @@
+.custom-control-label {
+    font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+}
+
+.forgot-password a {
+    color: #167bff;
+}
+
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('/images/jars-in-a-blue-furniture.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.bloc-content {
+    padding: 5vh;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.logo {
+    position: relative;
+    bottom: 1px;
+    right: 4px;
+}
+
+.userUl {
+    list-style: none;
+}
+
+.userUl li {
+    position: relative;
+    right: 20px;
+}
+
+.codeCol {
+    background-color: white;
+    border-left: "solid grey";
+    border-radius: 2px;
+    box-shadow: inset 2px 2px 2px black;
+}

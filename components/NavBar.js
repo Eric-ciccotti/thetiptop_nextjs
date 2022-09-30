@@ -2,8 +2,21 @@ import logo from '../public/images/logo.png';
 import Image from 'next/future/image';
 import Link from 'next/link';
 import style from '../styles/NavBar.module.css';
+import { useSession, signOut } from 'next-auth/react';
+
+
+
 
 const NavBar = () => {
+    const logout = () => {
+
+        signOut()
+
+
+    }
+
+
+    const { data: session, status } = useSession()
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <div className="container justify-content-between w-100">
@@ -24,10 +37,10 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul className="navbar-nav justify-content-between w-100">
                         <li className="nav-item">
-                            <Link href="/"><a className="nav-link active" aria-current="page" href="#">Home</a></Link>
+                            <Link href="/"><a className="nav-link" >Accueil</a></Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/contact"><a className="nav-link" href="#">About</a></Link>
+                            <Link href="/contact"><a className="nav-link" >Boutique</a></Link>
                         </li>
                         <li className="nav-item">
 
@@ -42,11 +55,16 @@ const NavBar = () => {
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Pricing</a>
+                            <Link href="/"><a className="nav-link">Contact</a></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
+                            <Link href="/user"><a className="nav-link">Mon Compte</a></Link>
                         </li>
+                        {session &&
+                            <li className="nav-item">
+                                <button onClick={logout} className="nav-link">Se déconnecter</button>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

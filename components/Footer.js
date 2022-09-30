@@ -69,7 +69,8 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <p className="text-center text-muted">Thé Tip Top © 2022</p>
+            <p className="text-center text-muted">Thé Tip Top © 2022 - projet étudiant fictif pour lequel aucun réel
+                achat ou aucune réservation ne pourrait être effectué.</p>
         </footer>
     );
 }
