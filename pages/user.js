@@ -74,7 +74,7 @@ const User = () => {
                                         <FaCartArrowDown />
                                     </div>
                                     <ul className={`${style.userUl} ${style.codeCol} mb-3 mt-3 `}>
-                                        {codes.map((code) => <li><FiArrowRightCircle /> {code}</li>)}
+                                        {codes.map((code, index) => <li key={index}><FiArrowRightCircle /> {code}</li>)}
                                     </ul>
                                 </div>
 
