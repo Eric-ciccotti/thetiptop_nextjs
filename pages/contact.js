@@ -3,7 +3,6 @@
 */
 
 import Head from "next/head";
-import Layout from "../Components/Layout";
 
 export default function About() {
     return (

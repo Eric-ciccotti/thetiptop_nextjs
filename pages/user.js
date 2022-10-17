@@ -69,7 +69,7 @@ const User = () => {
                                     </button>
                                 </div>
                                 <div className="col-md-12">
-                                    <label for="floatingTextarea2">Vos codes utilisés</label>
+                                    <label htmlFor="floatingTextarea2">Vos codes utilisés</label>
                                     <div className="row">
                                         <FaCartArrowDown />
                                     </div>
