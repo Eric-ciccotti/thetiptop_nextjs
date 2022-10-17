@@ -1,0 +1,51 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+//   posts     Post[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// model Post {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   published Boolean  @default(false)
+//   title     String   @db.VarChar(255)
+//   author    User?    @relation(fields: [authorId], references: [id])
+//   authorId  Int?
+// }
+
+
+model Gain {
+    id                  Int      @id @default(autoincrement())
+    gain_caisse         Int
+    gain_date_achat     DateTime
+    gain_dt_retrait     DateTime
+    gain_numero_tirage  String
+    gain_refProduit     Int
+    gain_produit        Produit @relation(fields:[gain_refProduit], references: [id]) 
+}
+
+model Produit {
+    id                  Int     @id @default(autoincrement())
+    prod_actif          Boolean
+    prod_nb_total       Int
+    prod_pct_tirage     Float
+    gains               Gain[]
+}
