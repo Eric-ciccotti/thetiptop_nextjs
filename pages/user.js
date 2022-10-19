@@ -25,7 +25,7 @@ const User = () => {
             <div className="container h-100">
                 <div className="row justify-content-center h-100">
                     <div className="col text-center justify-content-center ">
-                        <div className={`${style['bloc-content']} position-relative top-50 start-50 translate-middle`}>
+                        <div className={`${style['bloc-content']}`}>
                             <h1 className="fw-light">Mon compte</h1>
                             <hr />
                             <form className="d-flex flex-column justify-content-center align-items-center">

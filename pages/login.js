@@ -16,7 +16,7 @@ const Login = () => {
             <div className="container h-100">
                 <div className="row justify-content-center h-100">
                     <div className="col-sm-12 col-md-6 text-center justify-content-center">
-                        <div className={`${style['bloc-content']} position-relative top-50 start-50 translate-middle`}>
+                        <div className={`${style['bloc-content']}`}>
                             <h1 className="fw-light">Se connecter</h1>
                             <hr />
                             <form>
