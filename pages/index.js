@@ -28,7 +28,7 @@ export default function Home() {
                 <small id="codeHelp" className="form-text text-muted">Code à usage unique</small>
               </div>
               <div className="form-group mx-auto my-3 w-100">
-                <button type="submit" className={`${style['aButton']} btn btn-dark`}>Découvrir votre cadeau</button>
+                <button type="submit" className={`${style['aButton']} btn btn-dark`}>Découvrir mon cadeau !</button>
               </div>
             </form>
           </div>
@@ -55,21 +55,21 @@ export default function Home() {
       </header>
 
       <Section backgroundImagePath={'/images/three-cups-of-tea-steeping.png'}>
-        <h1>Présentation du jeu concours</h1>
+        <h2>Présentation du jeu concours</h2>
         <h4 className="fw-light">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum
-          repellendus inventore mollitia incidunt nobis ratione dolores quaerat
-          ab accusantium necessitatibus nihil quam beatae totam distinctio
-          doloribus excepturi deleniti, fugit odio!
+          Gagnez de superbes cadeaux en achetant nos produits ! 
+          <br />
+          Pour participer, il vous suffit d'effectuer un achat en boutique d'une valeur supérieure à XXX euros. Retrouvez votre code sur la facture !
+          <br />
+          Saisissez votre code ... Félicitations ! Vous avez gagné un cadeau ! Il nous vous reste plus qu'à le récupérer en magasin.
+          <br />
+          Après la [XXX période], vous participerez au jeu concours final afin de gagner XXX. Un participation par personne est comptabilisée pour le concours final.
         </h4>
       </Section>
       <Section backgroundImagePath={'/images/top-view-of-a-tea-towel-and-container-holding-grain.png'}>
-        <h1>Présentation de Thé Tip Top</h1>
+        <h2>Présentation de Thé Tip Top</h2>
         <h4 className="fw-light">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-          deleniti iste cumque suscipit ab recusandae cupiditate delectus
-          nesciunt quo dolorem totam vitae explicabo repudiandae repellendus
-          perferendis, sed temporibus. Mollitia, vel.
+          Thé Tip Top est une entreprise de thé [XXX ajouter des spécifications en se basant sur le cahier des charges]
         </h4>
       </Section>
     </>

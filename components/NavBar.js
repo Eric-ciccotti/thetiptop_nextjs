@@ -5,8 +5,6 @@ import style from '../styles/NavBar.module.css';
 import { useSession, signOut } from 'next-auth/react';
 
 
-
-
 const NavBar = () => {
     const logout = () => {
 
@@ -40,7 +38,7 @@ const NavBar = () => {
                             <Link href="/"><a className="nav-link" >Accueil</a></Link>
                         </li>
                         <li className="nav-item">
-                            <Link href="/contact"><a className="nav-link" >Boutique</a></Link>
+                            <Link href="/shop"><a className="nav-link" >Les produits à gagner</a></Link>
                         </li>
                         <li className="nav-item">
 
@@ -55,14 +53,14 @@ const NavBar = () => {
                         </li>
 
                         <li className="nav-item">
-                            <Link href="/"><a className="nav-link">Contact</a></Link>
+                            <Link href="/contact"><a className="nav-link">Contact</a></Link>
                         </li>
                         <li className="nav-item">
                             <Link href="/user"><a className="nav-link">Mon Compte</a></Link>
                         </li>
                         {session &&
                             <li className="nav-item">
-                                <button onClick={logout} className="nav-link">Se déconnecter</button>
+                                <button onClick={logout} className="btn btn-dark">Se déconnecter</button>
                             </li>
                         }
                     </ul>
