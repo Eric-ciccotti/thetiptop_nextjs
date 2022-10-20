@@ -59,16 +59,18 @@
 		top: calc(var(--aButton-base-padding) - var(--aButton-grow-padding));
 		width: calc(100% + var(--aButton-base-padding) + 2 * var(--aButton-grow-padding));
 		height: calc(100% + var(--aButton-base-padding) + 2 * var(--aButton-grow-padding));
-		border: 3px solid red;
+		border: 3px solid var(--color3);
 	}
 }
 
 .productToGain {
-  background-color:orange;
+  background-color:var(--color1);
   width: 20vw;
   height: 20vw;
   border-radius: 50%;
+  padding:10px;
 }
+
 
 @media (min-width: 992px) {
 	.productToGain {

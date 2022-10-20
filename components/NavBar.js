@@ -16,15 +16,15 @@ const NavBar = () => {
 
     const { data: session, status } = useSession()
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <nav className={`${style['customNavBar']} navbar navbar-expand-lg navbar-light bg-light sticky-top`}>
             <div className="container justify-content-between w-100">
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <a className="navbar-brand d-xs-block d-sm-block d-md-block d-xl-none d-lg-none">ThéTipTop</a>
+                <a className="navbar-brand d-block d-lg-none">ThéTipTop</a>
                 <Image
-                    className='d-xs-block d-sm-block d-md-block d-xl-none d-lg-none navbar-logo-small-device'
+                    className='d-block d-lg-none navbar-logo-small-device'
                     src={logo}
                     layout="fill"
                     alt="thetiptop navigation logo"
@@ -33,7 +33,49 @@ const NavBar = () => {
                 />
 
                 <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul className="navbar-nav justify-content-between w-100">
+
+                    <div className="row navbar-nav w-100 align-items-center justify-content-center text-lg-center">
+                        <div className="col-12 col-lg-5">
+                            <div className="row">
+                                <div className="nav-item col-12 col-lg-6">
+                                    <Link href="/"><a className="nav-link" >Accueil</a></Link>
+                                </div>
+                                <div className="nav-item col-12 col-lg-6">
+                                    <Link href="/shop"><a className="nav-link" >Les produits à gagner</a></Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-2 d-flex justify-content-center">
+                            <Link href="/">
+                            <Image
+                                className='d-none d-lg-block'
+                                src={logo}
+                                layout="fill"
+                                alt="thetiptop navigation logo"
+                                width={40}
+                                height={40}
+                            />
+                            </Link>
+                        </div>
+                        <div className="col-12 col-lg-5">
+                            <div className="row">
+                                <div className="nav-item col-12 col-lg-3">
+                                    <Link href="/contact"><a className="nav-link">Contact</a></Link>
+                                </div>
+                                <div className="nav-item col-12 col-lg-4">
+                                    <Link href="/user"><a className="nav-link">Mon Compte</a></Link>
+                                </div>
+                                {session &&
+                                    <div className="nav-item col-12 col-lg-5">
+                                        <button onClick={logout} className="btn btn-primary">Se déconnecter</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <ul className="navbar-nav justify-content-between w-100 d-none">
                         <li className="nav-item">
                             <Link href="/"><a className="nav-link" >Accueil</a></Link>
                         </li>
@@ -60,10 +102,12 @@ const NavBar = () => {
                         </li>
                         {session &&
                             <li className="nav-item">
-                                <button onClick={logout} className="btn btn-dark">Se déconnecter</button>
+                                <button onClick={logout} className="btn btn-primary">Se déconnecter</button>
                             </li>
                         }
                     </ul>
+
+
                 </div>
             </div>
         </nav>

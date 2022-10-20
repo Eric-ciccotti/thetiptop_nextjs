@@ -3,22 +3,22 @@ import logo from '../public/images/logo.png';
 import logoInstagram from '../public/images/logo instagram.png';
 import logoLinkedin from '../public/images/logo linkedin.png';
 
+import Link from 'next/link';
 
 const Footer = () => {
     return (
-        <footer className="py-3 my-4 footer">
+        <footer className="py-3 my-2 my-lg-5 footer">
             <div className="container border-bottom">
-                <div className="row d-flex justify-content-center">
-                    <button type="button" className='btn btn-dark mb-5 mt-3 w-25'>Boutique</button>
-                </div>
-                <div className="row">
+                <div className="row align-items-center">
                     <div className="col-sm-6 col-md-3 d-flex justify-content-center">
-                        <Image
-                            src={logo}
-                            alt="thetiptop navigation logo"
-                            width="110"
-                            height="110"
-                        />
+                        <Link href="/">
+                            <Image
+                                src={logo}
+                                alt="thetiptop navigation logo"
+                                width="110"
+                                height="110"
+                            />
+                        </Link>
                     </div>
                     <div className="col-sm-6 col-md-3">
 
@@ -51,19 +51,14 @@ const Footer = () => {
                     <div className="col-sm-6 col-md-3">
                         <ul className="nav flex-column justify-content-md-around justify-content-sm-center mx-5">
                             <li className="nav-item">
-                                <a href="#" className="nav-link px-2 text-muted">
-                                    CGU
-                                </a>
+                                <Link href="/CGU">
+                                    <a className='nav-link px-2 text-muted'>CGU</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="#" className="nav-link px-2 text-muted">
-                                    CGV
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="#" className="nav-link px-2 text-muted">
-                                    Mentions légales
-                                </a>
+                                <Link href="/mentions-legales">
+                                    <a className='nav-link px-2 text-muted'>Mentions légales</a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

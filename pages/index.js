@@ -1,9 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Footer from '../components/Footer'
-import Section from '../components/Section'
-import style from '../styles/Index.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import Footer from '../components/Footer';
+import Section from '../components/Section';
+import style from '../styles/Index.module.css';
 
+import rotatingLeftImage from '../public/images/coffret-degustation-mousselines-individuelles-n3-PhotoRoom.png';
+import rotatingRightImage from '../public/images/coffret-the-PhotoRoom.png';
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -18,37 +21,62 @@ export default function Home() {
       <header className={`${style['masthead']} d-flex justify-content-center align-items-center text-center`}>
         <div className="row container align-items-center">
           <div className="col-6 col-lg-3 d-none d-lg-block">
-            <img src="/images/coffret-the-PhotoRoom.png" alt="" className={`${style['rotatingImage']} w-100`}/>
+            <Image
+              src={rotatingLeftImage}
+              alt="coffret de thé marron rempli de sachets de toutes couleurs"
+              className={`${style['rotatingImage']} w-100`}
+            />
           </div>
           <div className={`${style['bloc-content']} col-12 col-lg-6`}>
-            <h1 className="fw-light">Saisis ton code</h1>
+            <h1>Saisis ton code</h1>
             <form>
               <div className="form-group mx-auto my-3 w-100">
                 <input type="text" className="form-control" id="codeInput" aria-describedby="codeHelp" placeholder="A293049430..." />
                 <small id="codeHelp" className="form-text text-muted">Code à usage unique</small>
               </div>
               <div className="form-group mx-auto my-3 w-100">
-                <button type="submit" className={`${style['aButton']} btn btn-dark`}>Découvrir mon cadeau !</button>
+                <button type="submit" className={`${style['aButton']} btn btn-primary`}>Découvrir mon cadeau !</button>
               </div>
             </form>
           </div>
           <div className="col-6 col-lg-3 d-none d-lg-block">
-            <img src="/images/coffret-degustation-mousselines-individuelles-n3-PhotoRoom.png" alt="" className={`${style['rotatingImage']} w-100`}/>
+            <Image
+              src={rotatingRightImage}
+              alt="coffret de thé bleu rempli de sachets de toutes couleurs"
+              className={`${style['rotatingImage']} w-100`}
+            />
           </div>
-          <div className={`${style['bloc-content']} col-12 row p-1 m-0 mt-3`}>
-            <div className="col-12">A gagner</div>
+          <div className="d-none d-lg-block col-1"></div>
+          <div className={`${style['bloc-content']} col-12 col-lg-10 row my-2 mx-0 py-2 py-lg-2 px-0 px-lg-3 `}>
+            <h2 className="col-12 my-2">A gagner</h2>
             <div className="col d-flex justify-content-center">
-              <div className={`${style['productToGain']}`}>Product 1</div>
+              <div className={`${style['productToGain']}`}>
+                <Image
+                  src={rotatingRightImage}
+                  alt="coffret de thé marron rempli de sachets de toutes couleurs"
+                />
+              </div>
             </div>
             <div className="col d-flex justify-content-center">
-              <div className={`${style['productToGain']}`}>Product 1</div>
+              <div className={`${style['productToGain']}`}>
+              <Image
+                  src={rotatingRightImage}
+                  alt="coffret de thé marron rempli de sachets de toutes couleurs"
+                />
+              </div>
             </div>
             <div className="col d-flex justify-content-center">
-              <div className={`${style['productToGain']}`}>Product 1</div>
+              <div className={`${style['productToGain']}`}>
+                <Image
+                  src={rotatingRightImage}
+                  alt="coffret de thé marron rempli de sachets de toutes couleurs"
+                />
+              </div>
             </div>
             <div className="col-12">
-              <div>Et bien d'autres !!</div>
-              <div>Voir tout</div>
+              <div className='btn btn-primary my-2'>
+                <Link href="shop">Et bien d'autres !</Link>
+              </div>
             </div>
           </div>
         </div>
