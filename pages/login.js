@@ -1,5 +1,5 @@
 import Image from 'next/future/image'
-import React from 'react'
+import React, { useState } from 'react'
 import Section from '../components/Section'
 import style from '../styles/Login.module.css'
 import { AiOutlineGoogle } from 'react-icons/ai'
@@ -10,6 +10,11 @@ import { getSession, useSession } from 'next-auth/react'
 
 
 const Login = () => {
+    const [email, setEmail] = useState('')
+    const sendLoginVerification = e => {
+        e.preventDefault()
+        signIn('email', { callbackUrl: '/user', email })
+    }
 
     return (
         <header className={style['masthead']}>
@@ -19,26 +24,29 @@ const Login = () => {
                         <div className={`${style['bloc-content']} position-relative top-50 start-50 translate-middle`}>
                             <h1 className="fw-light">Se connecter</h1>
                             <hr />
-                            <form>
+                            <form onSubmit={sendLoginVerification}>
                                 <div className="mb-3">
 
                                     <input
                                         type="email"
                                         className="form-control"
                                         placeholder="Email..."
+                                        value={email}
+                                        required
+                                        onChange={e => setEmail(e.target.value)}
                                     />
                                 </div>
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
 
                                     <input
                                         type="password"
                                         className="form-control"
                                         placeholder="Mot de passe..."
                                     />
-                                </div>
+                                </div> */}
                                 <div className="d-grid">
                                     <button type="submit" className="btn btn-primary">
-                                        Se connecter
+                                        Se connecter avec un email
                                     </button>
                                 </div>
 

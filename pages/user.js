@@ -14,10 +14,9 @@ import { getSession, SessionProvider, useSession } from 'next-auth/react'
 
 const User = () => {
     const { data: Session } = useSession()
-
     const [codes, setCodes] = useState([164243432, 464243432, 864243432])
-    const sessionNom = Session.user.name.split(' ')[1]
-    const sessionPrenom = Session.user.name.split(' ')[0]
+    const sessionNom = Session.user?.name?.split(' ')[1] ?? 'rien'
+    const sessionPrenom = Session.user?.name?.split(' ')[0] ?? 'rien'
 
     return (
 
