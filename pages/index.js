@@ -8,6 +8,36 @@ import style from '../styles/Index.module.css'
 
 export default function Home() {
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const body = { codeInput }
+    try {
+      const response = await fetch('/api/code/testCode', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      if (response.status !== 200) {
+        console.log('something went wrong')
+        //set an error banner here
+      } else {
+        resetForm()
+        console.log('form submitted successfully !!!')
+        //set a success banner here
+      }
+      //check response, if success is false, dont take them to success page
+    } catch (error) {
+      console.log('there was an error submitting', error)
+    }
+  }
+
+  const resetForm = () => {
+    setFirstName('')
+    setEmail('')
+    setSubject('')
+    setMessage('')
+  }
+
 
 
   return (
@@ -24,7 +54,7 @@ export default function Home() {
             <div className="col-12 text-center">
               <div className={`${style['bloc-content']} position-relative top-50 start-50 translate-middle`}>
                 <h1 className="fw-light">Saisir votre code</h1>
-                <form>
+                <form onSubmit={(e) => handleSubmit(e.target.value)}>
                   <div className="form-group mx-auto my-3 w-100">
                     <input type="text" className="form-control" id="codeInput" aria-describedby="codeHelp" placeholder="A293049430..." />
                     <small id="codeHelp" className="form-text text-muted">Code à usage unique</small>

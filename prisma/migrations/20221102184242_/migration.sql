@@ -64,13 +64,20 @@ CREATE TABLE "adresses" (
 );
 
 -- CreateTable
+CREATE TABLE "ticketsrestants" (
+    "id" SERIAL NOT NULL,
+    "ticketsRestants" INTEGER NOT NULL,
+
+    CONSTRAINT "ticketsrestants_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "gains" (
     "id" SERIAL NOT NULL,
-    "caisse" INTEGER,
-    "date_achat" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "date_retrait" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "numero_tirage" TEXT,
-    "user_id" TEXT NOT NULL,
+    "code_cadeau" TEXT NOT NULL,
+    "date_retrait" TIMESTAMP(3),
+    "user_id" TEXT,
+    "produitId" INTEGER,
 
     CONSTRAINT "gains_pkey" PRIMARY KEY ("id")
 );
@@ -80,16 +87,9 @@ CREATE TABLE "produits" (
     "id" SERIAL NOT NULL,
     "actif" BOOLEAN,
     "nom_produit" TEXT,
-    "nombre_total" INTEGER,
     "prix_ttc" DECIMAL(65,30),
 
     CONSTRAINT "produits_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "_GainToProduit" (
-    "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
 );
 
 -- CreateIndex
@@ -111,16 +111,10 @@ CREATE UNIQUE INDEX "sessions_session_token_key" ON "sessions"("session_token");
 CREATE UNIQUE INDEX "adresses_user_id_key" ON "adresses"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "gains_numero_tirage_key" ON "gains"("numero_tirage");
+CREATE UNIQUE INDEX "gains_code_cadeau_key" ON "gains"("code_cadeau");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "gains_user_id_key" ON "gains"("user_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_GainToProduit_AB_unique" ON "_GainToProduit"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_GainToProduit_B_index" ON "_GainToProduit"("B");
 
 -- AddForeignKey
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -132,10 +126,7 @@ ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user
 ALTER TABLE "adresses" ADD CONSTRAINT "adresses_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "gains" ADD CONSTRAINT "gains_produitId_fkey" FOREIGN KEY ("produitId") REFERENCES "produits"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "gains" ADD CONSTRAINT "gains_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_GainToProduit" ADD CONSTRAINT "_GainToProduit_A_fkey" FOREIGN KEY ("A") REFERENCES "gains"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_GainToProduit" ADD CONSTRAINT "_GainToProduit_B_fkey" FOREIGN KEY ("B") REFERENCES "produits"("id") ON DELETE CASCADE ON UPDATE CASCADE;

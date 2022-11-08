@@ -7,6 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 model User {
   id            String    @id @default(cuid())
   dateNaissance DateTime? @map("date_naissance")
@@ -71,34 +75,39 @@ model Adresse {
   libelle String?
   numero  String?
   pays    String?
-  userId  String  @unique @map("user_id")
 
-  userAdresse User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String @unique @map("user_id")
+  userAdresse User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("adresses")
 }
 
-model Gain {
-  id           Int       @id @default(autoincrement())
-  caisse       Int?
-  dateAchat    DateTime? @default(now()) @map("date_achat")
-  dateRetrait  DateTime? @default(now()) @map("date_retrait")
-  numeroTirage String?   @unique @map("numero_tirage") @db.Text
-  refProduit   Produit[]
-  userId       String    @unique @map("user_id")
+model TicketsRestants {
+  id              Int @id @default(autoincrement())
+  ticketsRestants Int
 
-  refUser User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@map("ticketsrestants")
+}
+
+model Gain {
+  id          Int       @id @default(autoincrement())
+  codeCadeau  String    @unique @map("code_cadeau") @db.Text
+  dateRetrait DateTime? @map("date_retrait")
+  userId      String?   @unique @map("user_id")
+  produitId   Int?
+
+  Produit Produit? @relation(fields: [produitId], references: [id])
+  refUser User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("gains")
 }
 
 model Produit {
-  id          Int      @id @default(autoincrement())
-  actif       Boolean?
-  nomProduit  String?  @map("nom_produit")
-  nombreTotal Int?     @map("nombre_total")
-  prixTtc     Decimal? @map("prix_ttc")
-  refGain     Gain[]
+  id         Int      @id @default(autoincrement())
+  actif      Boolean?
+  nomProduit String?  @map("nom_produit")
+  prixTtc    Decimal? @map("prix_ttc")
+  refGain    Gain[]
 
   @@map("produits")
 }

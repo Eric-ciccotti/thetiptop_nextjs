@@ -1,0 +1,106 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table users {
+  id String [pk]
+  dateNaissance DateTime
+  name String
+  surname String
+  email String [unique]
+  emailVerified DateTime
+  image String
+  adresse String
+  role Role [not null, default: 'USER']
+  accounts accounts [not null]
+  sessions sessions [not null]
+  gains gains [not null]
+  Adresse adresses
+}
+
+Table accounts {
+  id String [pk]
+  userId String [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  user users [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table verificationtokens {
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table sessions {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user users [not null]
+}
+
+Table adresses {
+  id Int [pk, increment]
+  cp Int
+  libelle String
+  numero String
+  pays String
+  userId String [unique, not null]
+  userAdresse users [not null]
+}
+
+Table ticketsrestants {
+  id Int [pk, increment]
+  ticketsRestants Int [not null]
+}
+
+Table gains {
+  id Int [pk, increment]
+  codeCadeau String [unique, not null]
+  dateRetrait DateTime
+  userId String [unique]
+  produitId Int
+  Produit produits
+  refUser users
+}
+
+Table produits {
+  id Int [pk, increment]
+  actif Boolean
+  nomProduit String
+  prixTtc Decimal
+  refGain gains [not null]
+}
+
+Enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+}
+
+Ref: accounts.userId > users.id [delete: Cascade]
+
+Ref: sessions.userId > users.id [delete: Cascade]
+
+Ref: adresses.userId - users.id [delete: Cascade]
+
+Ref: gains.produitId > produits.id
+
+Ref: gains.userId > users.id [delete: Cascade]
