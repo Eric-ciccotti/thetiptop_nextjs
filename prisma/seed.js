@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
-import { produits } from '../data/produits.js'
-import GenerateGain from '../pages/api/caisse/caisse.js'
-import generationFacture from '../pages/api/caisse/caisse.js'
+const { PrismaClient } = require('@prisma/client')
+const { produits } = require('../data/produits.js')
+const GenerateGain = require('../pages/api/caisse/caisse.js')
+const generationFacture = require('../pages/api/caisse/caisse.js')
 const prisma = new PrismaClient()
 
 async function main() {

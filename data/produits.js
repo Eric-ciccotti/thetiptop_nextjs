@@ -1,4 +1,4 @@
-export const produits = [
+exports.produits = [
     {
         nomProduit: 'coffret découverte à 69€',
         prixTtc: 69,

@@ -4,25 +4,48 @@ import Footer from '../components/Footer'
 import Section from '../components/Section'
 import style from '../styles/Index.module.css'
 
+import { useState } from 'react';
+import { useSession, getSession } from "next-auth/react"
+
 
 
 export default function Home() {
+  const [inputs, setInputs] = useState({});
+  const { data: session, status } = useSession()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const body = { codeInput }
+  const resetFields = () => setInputs('');
+
+  const handleSubmit = (event) => {
+    return status === "authenticated"
+      ? submitCode(event)
+      : alert('veuillez creer un compte pour voir votre cadeau');
+  }
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({ ...values, [name]: value }))
+  }
+
+
+
+  const submitCode = async (event) => {
+    event.preventDefault();
+    const codeInput = { inputs }
+
+
     try {
       const response = await fetch('/api/code/testCode', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(codeInput)
       })
       if (response.status !== 200) {
         console.log('something went wrong')
         //set an error banner here
       } else {
-        resetForm()
-        console.log('form submitted successfully !!!')
+        resetFields()
+        console.log('form submitted successfully !!!', response)
         //set a success banner here
       }
       //check response, if success is false, dont take them to success page
@@ -31,12 +54,7 @@ export default function Home() {
     }
   }
 
-  const resetForm = () => {
-    setFirstName('')
-    setEmail('')
-    setSubject('')
-    setMessage('')
-  }
+
 
 
 
@@ -54,9 +72,9 @@ export default function Home() {
             <div className="col-12 text-center">
               <div className={`${style['bloc-content']} position-relative top-50 start-50 translate-middle`}>
                 <h1 className="fw-light">Saisir votre code</h1>
-                <form onSubmit={(e) => handleSubmit(e.target.value)}>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group mx-auto my-3 w-100">
-                    <input type="text" className="form-control" id="codeInput" aria-describedby="codeHelp" placeholder="A293049430..." />
+                    <input type="text" className="form-control" id="codeInput" name="codeInput" onChange={handleChange} aria-describedby="codeHelp" placeholder="A293049430..." />
                     <small id="codeHelp" className="form-text text-muted">Code à usage unique</small>
                   </div>
                   <div className="form-group mx-auto my-3 w-100">
@@ -89,4 +107,12 @@ export default function Home() {
       </Section>
     </>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  return {
+    props: { session }
+  }
 }
