@@ -1,29 +1,28 @@
-const { getSession } = require('next-auth/react');
-const prisma = require('../../../lib/prisma.js')
-const CryptoJS = require('crypto-js')
-const Chance = require('chance');
-const { Cadeaux } = require('./cadeau.enum.js');
+// const { getSession } = require('next-auth/react');
+const { prisma } = require('../../../lib/prisma.js')
+// const CryptoJS = require('crypto-js')
+// const Chance = require('chance');
+// const { Cadeaux } = require('./cadeau.enum.js');
 
-const password = process.env.ENCRYPT_SECRET
-const encrypt = (content, password) => CryptoJS.AES.encrypt(JSON.stringify({ content }), password).toString()
-const decrypt = (crypted, password) => JSON.parse(CryptoJS.AES.decrypt(crypted, password).toString(CryptoJS.enc.Utf8)).content
+// const password = process.env.ENCRYPT_SECRET
+// const encrypt = (content, password) => CryptoJS.AES.encrypt(JSON.stringify({ content }), password).toString()
+// const decrypt = (crypted, password) => JSON.parse(CryptoJS.AES.decrypt(crypted, password).toString(CryptoJS.enc.Utf8)).content
 
 
 
-async function GenerateGain(NoCaisse, NoFacture) {
 
+async function generateGain(req, res) {
 
     //récupere les tickets restants
-    const ticketRestants = await prisma.TicketsRestants.findFirst({
+    const ticketRestants = await prisma.ticketsRestants.findFirst({
         where: {
-            ticketsRestants
+            id: 1
         },
-
     })
 
     //si il reste des tickets ? on en retire 1
     if (ticketRestants > 0) {
-        await prisma.TicketsRestants.update({
+        const result = await prisma.ticketsRestants.update({
             where: {
                 id: 1
             },
@@ -33,6 +32,15 @@ async function GenerateGain(NoCaisse, NoFacture) {
                 }
             }
         })
+        console.log(result);
+    }
+}
+
+module.exports = {
+    generateGain
+}
+
+        // return res.status(200).json(result, { success: true })
 
 
         // const dateAchat = new Date().toISOString();
@@ -43,14 +51,6 @@ async function GenerateGain(NoCaisse, NoFacture) {
         //     NoFacture
         //     NumeroTrage: 489443
         // }
-
-
-
-
-
-    }
-
-
 
     // await prisma.produit.update({
     //     where: {
@@ -63,8 +63,9 @@ async function GenerateGain(NoCaisse, NoFacture) {
     //     }
     // })
 
+// }
 
-}
+
 
 
 
@@ -83,7 +84,7 @@ async function GenerateGain(NoCaisse, NoFacture) {
 //     HeuresEnMilliseconde
 // }
 
-// génération d'un numéro crypté à l'aide des informations 
+// génération d'un numéro crypté à l'aide des informations
 // const numeroFactureHashed = encrypt(facture, password)
 
 //sauvegarde du numéro de facture dans la db
@@ -140,13 +141,10 @@ async function GenerateGain(NoCaisse, NoFacture) {
 //     data: {
 //         numeroTirage: codeCadeauRandom,
 //         refProduit : {
-//             connect : 
+//             connect :
 //         }
 //     }
 // })
 
 // }
 
-module.exports = {
-    GenerateGain,
-}

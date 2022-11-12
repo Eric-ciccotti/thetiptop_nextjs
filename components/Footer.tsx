@@ -3,7 +3,6 @@ import logo from '../public/images/logo.png';
 import logoInstagram from '../public/images/logo instagram.png';
 import logoLinkedin from '../public/images/logo linkedin.png';
 
-
 const Footer = () => {
     return (
         <footer className="py-3 my-4 footer">

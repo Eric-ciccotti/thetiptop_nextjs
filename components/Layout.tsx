@@ -1,9 +1,8 @@
+import { PropsWithChildren } from "react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 
-
-
-const Layout = ({ children }) =>
+const Layout = ({ children } : PropsWithChildren) =>
     <div>
         <NavBar />
         <main>

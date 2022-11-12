@@ -4,17 +4,10 @@ import Link from 'next/link';
 import style from '../styles/NavBar.module.css';
 import { useSession, signOut } from 'next-auth/react';
 
-
-
-
 const NavBar = () => {
     const logout = () => {
-
         signOut()
-
-
     }
-
 
     const { data: session, status } = useSession()
     return (

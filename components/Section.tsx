@@ -1,4 +1,3 @@
-
 import style from "../styles/Section.module.css"
 
 const Section = ({ children, backgroundImagePath, customClass = null }) => {

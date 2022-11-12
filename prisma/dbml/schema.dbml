@@ -77,7 +77,7 @@ Table gains {
   dateRetrait DateTime
   userId String [unique]
   produitId Int
-  Produit produits
+  produit produits
   refUser users
 }
 

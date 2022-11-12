@@ -1,7 +1,10 @@
-exports.produits = [
+import { Prisma } from "@prisma/client";
+
+export const produits :  Array<Prisma.ProduitCreateManyInput>= [
     {
         nomProduit: 'coffret découverte à 69€',
         prixTtc: 69,
+
     },
     {
         nomProduit: 'coffret découverte à 39€',
